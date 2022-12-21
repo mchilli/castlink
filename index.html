@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <link id="favicon" rel="shortcut icon" href="img/favicon.png" />
+        <link rel="stylesheet" href="css/style.min.css" />
+        <link rel="stylesheet" href="css/fontawesome.min.css" />
+        <link rel="stylesheet" href="css/brands.min.css" />
+        <link rel="stylesheet" href="css/solid.min.css" />
+        <script src="lib/cast.min.js"></script>
+        <title>Castlink</title>
+    </head>
+    <body>
+        <div class="cardholder">
+            <details id="card-session" class="card" open>
+                <summary class="card-header">Session</summary>
+                <div class="card-body">
+                    <div class="card-content">
+                        <div id="device-status-info" class="info">Not connected to a device</div>
+                        <div class="btn-container">
+                            <div id="cast-connect" class="btn btn-primary btn-disabled">
+                                <i class="fab fa-chromecast"></i>
+                                <span id="device-status"> Connect </span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </details>
+            <details id="card-player" class="card" open>
+                <summary class="card-header">Player</summary>
+                <div class="card-body">
+                    <div class="card-content">
+                        <div id="player-status-info" class="info">
+                            <b>No media loaded.</b> Configure media below, and load it into the
+                            player.
+                        </div>
+                        <div id="player-control" class="btn-container wrap hidden">
+                            <div id="player-30-backward" class="btn btn-secondary">
+                                <i class="fas fa-history"></i>
+                                -30s
+                            </div>
+                            <div id="player-play" class="btn btn-primary">
+                                <i id="player-status-icon" class="fas fa-play"></i>
+                                <span id="player-status"> Play </span>
+                            </div>
+                            <div id="player-next" class="btn btn-info">
+                                <i id="player-status-next-icon" class="fas fa-step-forward"></i>
+                                <span id="player-status-next"> Next </span>
+                            </div>
+                            <div id="player-30-forward" class="btn btn-secondary">
+                                <i class="fas fa-history fa-flip-horizontal"></i>
+                                +30s
+                            </div>
+                            <div id="volume-down" class="btn btn-secondary btn-right">
+                                <i class="fas fa-volume-down"></i>
+                                Vol -
+                            </div>
+                            <div id="volume-mute" class="btn btn-secondary">
+                                <i class="fas fa-volume-mute"></i>
+                                Mute
+                            </div>
+                            <div id="volume-up" class="btn btn-secondary">
+                                <i class="fas fa-volume-up"></i>
+                                Vol +
+                            </div>
+                        </div>
+                        <div id="player-progress" class="btn-container hidden">
+                            <div id="player-time" class="time">00:00:00</div>
+                            <input
+                                type="range"
+                                id="player-progress-bar"
+                                class="progress"
+                                value="0"
+                                step="0.1"
+                            />
+                            <div id="player-duration" class="time">00:00:00</div>
+                        </div>
+                    </div>
+                </div>
+            </details>
+            <details id="card-media" class="card">
+                <summary class="card-header">Media</summary>
+                <div class="card-body">
+                    <div class="card-content">
+                        <div class="btn-container">
+                            <div id="media-add" class="btn btn-secondary btn-disabled">
+                                <i class="fas fa-plus"></i>
+                                Add to Playlist
+                            </div>
+                            <div id="media-clear" class="btn btn-alert btn-disabled">
+                                <i class="fas fa-trash"></i>
+                                Clear Input
+                            </div>
+                            <div id="media-example" class="btn btn-secondary">
+                                <i class="fas fa-lightbulb"></i>
+                                Example
+                            </div>
+                        </div>
+                        <div class="media-input-field">
+                            <h4>Title</h4>
+                            <input type="text" name="title" id="media-title" />
+                        </div>
+                        <div class="media-input-field">
+                            <h4>URL</h4>
+                            <input type="text" name="url" id="media-url" />
+                        </div>
+                    </div>
+                </div>
+            </details>
+            <details id="card-playlist" class="card" open>
+                <summary class="card-header">Playlist</summary>
+                <div class="card-body">
+                    <div class="card-content">
+                        <div class="btn-container">
+                            <div id="playlist-load" class="btn btn-primary btn-disabled">
+                                <i id="playlist-load-icon" class="fas fa-external-link-alt"></i>
+                                <span id="playlist-load-status"> Start Playlist </span>
+                            </div>
+                            <div id="playlist-clear" class="btn btn-alert btn-disabled">
+                                <i class="fas fa-trash"></i>
+                                Clear Playlist
+                            </div>
+                        </div>
+                        <div id="playlist"></div>
+                    </div>
+                </div>
+            </details>
+        </div>
+        <script src="main.js"></script>
+    </body>
+</html>
