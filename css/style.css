@@ -23,7 +23,6 @@ body .cardholder {
   margin: 1em 2em;
   -webkit-user-select: none;
      -moz-user-select: none;
-      -ms-user-select: none;
           user-select: none;
 }
 body .cardholder .card {
@@ -83,6 +82,7 @@ body .cardholder .card .card-body .card-content #playlist .playlist-item {
   position: relative;
   border: 1px solid var(--color-lightgrey);
   background-color: var(--color-white);
+  word-wrap: break-word;
 }
 body .cardholder .card .card-body .card-content #playlist .playlist-item .playlist-item-delete {
   display: flex;
@@ -99,7 +99,6 @@ body .cardholder .btn-container {
 }
 body .cardholder .btn-container .btn {
   position: relative;
-  width: -webkit-fit-content;
   width: -moz-fit-content;
   width: fit-content;
   margin: 0.3em;
@@ -132,12 +131,6 @@ body .cardholder .btn-container .btn.btn-disabled {
 body .cardholder .btn-container .btn.btn-right {
   margin-left: auto;
 }
-body .cardholder .btn-container .btn .btn-label {
-  transition: width 1s;
-}
-body .cardholder .btn-container .btn .btn-label.btn-hover {
-  display: none;
-}
 body .cardholder .btn-container .btn:not(.btn-disabled):hover::after {
   display: block;
   content: "";
@@ -150,9 +143,6 @@ body .cardholder .btn-container .btn:not(.btn-disabled):hover::after {
   z-index: -1;
   border-radius: 0.4em;
   opacity: 0.5;
-}
-body .cardholder .btn-container .btn:not(.btn-disabled):hover .btn-label {
-  display: inline;
 }
 body .cardholder .btn-container .time {
   width: 80px;
