@@ -15,12 +15,13 @@
 body {
   font-family: sans-serif;
   color: var(--color-black);
+  margin: 0;
 }
 body .cardholder {
   display: flex;
   gap: 0.8em;
   flex-direction: column;
-  margin: 1em 2em;
+  margin: 1em;
   -webkit-user-select: none;
      -moz-user-select: none;
           user-select: none;
