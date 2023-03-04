@@ -1,7 +1,7 @@
 {
     "name": "Castlink",
     "display": "standalone",
-    "start_url": "/",
+    "start_url": "/castlink",
     "theme_color": "#487de4",
     "background_color": "#487de4",
     "icons": [
