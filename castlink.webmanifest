@@ -1,0 +1,29 @@
+{
+    "name": "Castlink",
+    "display": "standalone",
+    "start_url": "/",
+    "theme_color": "#487de4",
+    "background_color": "#487de4",
+    "icons": [
+        {
+            "src": "img/icon_96.png",
+            "type": "image/png",
+            "sizes": "96x96"
+        },
+        {
+            "src": "img/icon_192.png",
+            "type": "image/png",
+            "sizes": "192x192"
+        },
+        {
+            "src": "img/icon_256.png",
+            "type": "image/png",
+            "sizes": "256x256"
+        },
+        {
+            "src": "img/icon_512.png",
+            "type": "image/png",
+            "sizes": "512x512"
+        }
+    ]
+}
