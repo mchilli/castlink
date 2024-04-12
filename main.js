@@ -242,10 +242,16 @@ function playlistAdd(title = '', url = '') {
             createElement({
                 content: title,
                 escapeHTML: true,
+                attributes: {
+                    title: title,
+                },
             }),
             createElement({
                 content: url,
                 escapeHTML: true,
+                attributes: {
+                    title: url,
+                },
             }),
             createElement({
                 attributes: {
@@ -458,7 +464,7 @@ btnVolumeMute.addEventListener('click', () => {
 btnMediaAdd.addEventListener('click', () => {
     if (inputMediaUrl.value != '') {
         let url = inputMediaUrl.value;
-        let title = inputMediaTitle.value != '' ? inputMediaTitle.value : url;
+        let title = inputMediaTitle.value != '' ? inputMediaTitle.value : 'Untitled';
         playlistAdd(title, url);
 
         inputMediaTitle.value = '';

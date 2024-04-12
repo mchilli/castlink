@@ -88,14 +88,14 @@ body {
                             background-color: var(--color-white);
                             word-wrap: break-word;
 
-                            .playlist-item-delete {
-                                display: flex;
-                                align-items: center;
-                                position: absolute;
-                                top: 0;
-                                height: 100%;
-                                right: 0.8em;
-                                cursor: pointer;
+                            > div {
+                                &:first-child {
+                                    font-weight: bold;
+                                }
+
+                                white-space: nowrap;
+                                text-overflow: ellipsis;
+                                overflow: hidden;
                             }
                         }
                     }

@@ -22,9 +22,7 @@ body .cardholder {
   gap: 0.8em;
   flex-direction: column;
   margin: 1em;
-  -webkit-user-select: none;
-     -moz-user-select: none;
-          user-select: none;
+  user-select: none;
 }
 body .cardholder .card {
   display: flex;
@@ -85,14 +83,13 @@ body .cardholder .card .card-body .card-content #playlist .playlist-item {
   background-color: var(--color-white);
   word-wrap: break-word;
 }
-body .cardholder .card .card-body .card-content #playlist .playlist-item .playlist-item-delete {
-  display: flex;
-  align-items: center;
-  position: absolute;
-  top: 0;
-  height: 100%;
-  right: 0.8em;
-  cursor: pointer;
+body .cardholder .card .card-body .card-content #playlist .playlist-item > div {
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  overflow: hidden;
+}
+body .cardholder .card .card-body .card-content #playlist .playlist-item > div:first-child {
+  font-weight: bold;
 }
 body .cardholder .btn-container {
   display: flex;
@@ -100,7 +97,6 @@ body .cardholder .btn-container {
 }
 body .cardholder .btn-container .btn {
   position: relative;
-  width: -moz-fit-content;
   width: fit-content;
   margin: 0.3em;
   padding: 0.4em 0.8em;
@@ -153,8 +149,7 @@ body .cardholder .btn-container .time:last-child {
 }
 body .cardholder .btn-container .progress {
   -webkit-appearance: none; /* Override default look */
-  -moz-appearance: none;
-       appearance: none;
+  appearance: none;
   width: 100%;
   margin: 0 0.4em;
   border: 1px solid var(--color-lightgrey);
