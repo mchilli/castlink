@@ -505,6 +505,7 @@ btnPlaylistClear.addEventListener('click', () => {
         playlistIndex = 0;
         sessionStorage.removeItem('index');
 
+        btnPlaylistLoad.classList.add('btn-disabled');
         btnPlaylistClear.classList.add('btn-disabled');
 
         playerCheckNextAvailable();
