@@ -159,6 +159,19 @@ function getDuration(s) {
     return `${hr}:${min}:${sec}`;
 }
 
+function playerUpdateStatusInfo() {
+    if (['playing', 'paused'].includes(cjs.state)) {
+        infoPlayerStatusInfo.innerHTML = `Volume: <b>${
+            cjs.muted ? 'Muted' : `${cjs.volumeLevel * 100}%`
+        }</b><br>Current playing: <b>${cjs.title}</b>`;
+        infoPlayerStatusInfo.classList.add('success');
+    } else {
+        infoPlayerStatusInfo.innerHTML =
+            '<b>No media loaded.</b><br>Configure media below, and load it into the player.';
+        infoPlayerStatusInfo.classList.remove('success');
+    }
+}
+
 function playerTogglePause() {
     if (cjs.connected) {
         if (cjs.paused) {
@@ -199,9 +212,7 @@ function playerPlayNext() {
         btnContPlayerControl.classList.add('hidden');
         btnContPlayerProgress.classList.add('hidden');
 
-        infoPlayerStatusInfo.innerHTML =
-            '<b>No media loaded.</b> Configure media below, and load it into the player.';
-        infoPlayerStatusInfo.classList.remove('success');
+        playerUpdateStatusInfo();
     }
 }
 
@@ -389,7 +400,6 @@ function playlistResetPauseBtns() {
 function playlistPlayItem(target) {
     if (cjs.connected) {
         for (let index = 0; index < listPlaylist.children.length; index++) {
-            console.log(index, playlistIndex, cjs.state);
             const item = listPlaylist.children[index];
             if (item === target) {
                 if (index !== playlistIndex || !['playing', 'paused'].includes(cjs.state)) {
@@ -619,9 +629,7 @@ cjs.on('disconnect', () => {
     infoCastStatusInfo.innerHTML = 'Not connected to a device';
     infoCastStatusInfo.classList.remove('success');
 
-    infoPlayerStatusInfo.innerHTML =
-        '<b>No media loaded.</b> Configure media below, and load it into the player.';
-    infoPlayerStatusInfo.classList.remove('success');
+    playerUpdateStatusInfo();
 
     btnContPlayerControl.classList.add('hidden');
     btnContPlayerProgress.classList.add('hidden');
@@ -651,13 +659,19 @@ cjs.on('timeupdate', () => {
 });
 
 // Volume changed
-cjs.on('volumechange', () => {});
+cjs.on('volumechange', () => {
+    playerUpdateStatusInfo();
+});
 
 // Muted state changed
-cjs.on('mute', () => {});
+cjs.on('mute', () => {
+    playerUpdateStatusInfo();
+});
 
 // Muted state changed
-cjs.on('unmute', () => {});
+cjs.on('unmute', () => {
+    playerUpdateStatusInfo();
+});
 
 // Media is playing
 cjs.on('playing', () => {
@@ -670,8 +684,8 @@ cjs.on('playing', () => {
 
     btnPlayerPlay.classList.add('btn-info');
 
-    infoPlayerStatusInfo.innerHTML = `Current playing: <b>${cjs.title}</b>`;
-    infoPlayerStatusInfo.classList.add('success');
+    playerUpdateStatusInfo();
+
     infoPlayerStatus.innerHTML = 'Pause';
     infoPlayerStatusIcon.classList.remove('fa-play');
     infoPlayerStatusIcon.classList.add('fa-pause');
@@ -695,8 +709,8 @@ cjs.on('pause', () => {
 
     btnPlayerPlay.classList.remove('btn-info');
 
-    infoPlayerStatusInfo.innerHTML = `Current playing: <b>${cjs.title}</b>`;
-    infoPlayerStatusInfo.classList.add('success');
+    playerUpdateStatusInfo();
+
     infoPlayerStatus.innerHTML = 'Play';
     infoPlayerStatusIcon.classList.remove('fa-pause');
     infoPlayerStatusIcon.classList.add('fa-play');
