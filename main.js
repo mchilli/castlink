@@ -120,9 +120,9 @@ function getParamsFromUrl() {
     return result;
 }
 
-function getPlaylistFromJson(json) {
+function urlParamToList(param) {
     let list = [];
-    json.split(';').forEach((item) => {
+    param.split(';').forEach((item) => {
         let part = item.split('|');
         let obj = {
             title: part[0],
@@ -131,6 +131,18 @@ function getPlaylistFromJson(json) {
         list.push(obj);
     });
     return list;
+}
+
+function storePlaylist(list) {
+    sessionStorage.setItem('playlist', JSON.stringify(list));
+}
+
+function getStoredPlaylist() {
+    return sessionStorage.getItem('playlist');
+}
+
+function removeStoredPlaylist() {
+    sessionStorage.removeItem('playlist');
 }
 
 function getDuration(s) {
@@ -327,6 +339,8 @@ function playlistAdd(title = '', url = '') {
     });
     listPlaylist.appendChild(item);
 
+    storePlaylist(playlist);
+
     if (cjs.connected) {
         btnPlaylistLoad.classList.remove('btn-disabled');
     }
@@ -401,6 +415,9 @@ function playlistDeleteItem(target) {
 
     if (playlist <= 0) {
         btnPlaylistClear.classList.add('btn-disabled');
+        removeStoredPlaylist();
+    } else {
+        storePlaylist(playlist);
     }
 }
 
@@ -513,6 +530,8 @@ btnPlaylistClear.addEventListener('click', () => {
         btnPlaylistClear.classList.add('btn-disabled');
 
         playerCheckNextAvailable();
+
+        removeStoredPlaylist();
     }
 });
 
@@ -720,9 +739,13 @@ cjs.on('error', (e) => {
 
 //################################################################## main
 const urlParams = getParamsFromUrl();
+const storedPlaylist = JSON.parse(getStoredPlaylist());
+
 if (urlParams.hasOwnProperty('list')) {
-    let playlist = getPlaylistFromJson(urlParams.list);
-    for (const item of playlist) {
+    storePlaylist(urlParamToList(urlParams.list));
+    window.location.replace(`${window.location.origin}${window.location.pathname}`);
+} else if (storedPlaylist) {
+    for (const item of storedPlaylist) {
         playlistAdd(item.title, item.url);
     }
 }
