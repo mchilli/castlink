@@ -16,6 +16,6 @@ You can automatically insert items into the playlist by passing information as a
 
 #### special thanks:
 
--   [Chromecast.Link](https://chromecast.link/) - for the idea
+-   [Chromecast.Link](https://chromecast.link/) by [anacrolix](https://github.com/anacrolix) - for the idea
 -   [Cast.js](https://castjs.io/) - for the Chromecast sender library
 -   [Font Awesome](https://fontawesome.com/) - for the icons
