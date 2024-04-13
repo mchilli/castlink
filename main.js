@@ -121,12 +121,16 @@ function getParamsFromUrl() {
 }
 
 function getPlaylistFromJson(json) {
-    let result = {};
-    json.split(';').forEach((part) => {
-        let item = part.split('|');
-        result[item[0]] = item[1].replaceAll(' ', '%20');
+    let list = [];
+    json.split(';').forEach((item) => {
+        let part = item.split('|');
+        let obj = {
+            title: part[0],
+            url: part[1],
+        };
+        list.push(obj);
     });
-    return result;
+    return list;
 }
 
 function getDuration(s) {
@@ -718,10 +722,7 @@ cjs.on('error', (e) => {
 const urlParams = getParamsFromUrl();
 if (urlParams.hasOwnProperty('list')) {
     let playlist = getPlaylistFromJson(urlParams.list);
-    for (const title in playlist) {
-        if (Object.hasOwnProperty.call(playlist, title)) {
-            const url = playlist[title];
-            playlistAdd(title, url);
-        }
+    for (const item of playlist) {
+        playlistAdd(item.title, item.url);
     }
 }
