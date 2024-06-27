@@ -655,6 +655,7 @@ cjs.on('timeupdate', () => {
     if (!progressBarSeeking) {
         infoPlayerTime.innerHTML = cjs.timePretty;
         inputPlayerProgressBar.value = cjs.progress;
+        infoPlayerDuration.innerHTML = cjs.durationPretty;
     }
 });
 
@@ -690,8 +691,6 @@ cjs.on('playing', () => {
     infoPlayerStatusIcon.classList.remove('fa-play');
     infoPlayerStatusIcon.classList.add('fa-pause');
 
-    infoPlayerDuration.innerHTML = cjs.durationPretty;
-
     infoPlaylistLoadIcon.classList.remove('fa-sync-alt', 'fa-spin');
     infoPlaylistLoadStatus.innerHTML = 'Start Playlist';
 
@@ -714,8 +713,6 @@ cjs.on('pause', () => {
     infoPlayerStatus.innerHTML = 'Play';
     infoPlayerStatusIcon.classList.remove('fa-pause');
     infoPlayerStatusIcon.classList.add('fa-play');
-
-    infoPlayerDuration.innerHTML = cjs.durationPretty;
 
     playerCheckNextAvailable();
 
