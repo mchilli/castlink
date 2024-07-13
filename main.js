@@ -56,7 +56,7 @@ const listPlaylist = document.getElementById('playlist');
 
 let playlist = [];
 let playlistIndex = sessionStorage.getItem('index') ? parseInt(sessionStorage.getItem('index')) : 0;
-let autoplayNext = true; // to prevent trigger autoplay next playlist item, when manual choose from playlist
+let autoplayNext = true; // to prevent trigger "autoplay next playlist item", if an item manually chosen from the playlist
 let progressBarSeeking = false;
 
 //############################################################################### functions
@@ -217,7 +217,7 @@ function playerPlayNext() {
 }
 
 function playerPlayIndex(index) {
-    autoplayNext = false; // to prevent trigger autoplay next playlist item, when manual choose from playlist
+    autoplayNext = false; // to prevent trigger "autoplay next playlist item", if an item manually chosen from the playlist
 
     infoPlaylistLoadIcon.classList.add('fa-sync-alt', 'fa-spin');
     infoPlaylistLoadStatus.innerHTML = 'Loading...';
@@ -679,7 +679,7 @@ cjs.on('unmute', () => {
 cjs.on('playing', () => {
     setDocTitle(`Playing: ${cjs.title}`);
 
-    autoplayNext = true; // to prevent trigger autoplay next playlist item, when manual choose from playlist
+    autoplayNext = true; // to prevent trigger "autoplay next playlist item", if an item manually chosen from the playlist
 
     btnContPlayerControl.classList.remove('hidden');
     btnContPlayerProgress.classList.remove('hidden');
@@ -733,7 +733,7 @@ cjs.on('end', () => {
 
     playlistResetPauseBtns();
 
-    if (autoplayNext) playerPlayNext(); // to prevent trigger autoplay next playlist item, when manual choose from playlist
+    if (autoplayNext) playerPlayNext(); // to prevent trigger "autoplay next playlist item", if an item manually chosen from the playlist
 });
 
 // Media is buffering / seeking
