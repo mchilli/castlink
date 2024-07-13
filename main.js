@@ -424,6 +424,7 @@ function playlistDeleteItem(target) {
     playerCheckNextAvailable();
 
     if (playlist <= 0) {
+        btnPlaylistLoad.classList.add('btn-disabled');
         btnPlaylistClear.classList.add('btn-disabled');
         removeStoredPlaylist();
     } else {
