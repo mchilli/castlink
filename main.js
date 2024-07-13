@@ -58,6 +58,7 @@ let playlist = [];
 let playlistIndex = sessionStorage.getItem('index') ? parseInt(sessionStorage.getItem('index')) : 0;
 let autoplayNext = true; // to prevent trigger "autoplay next playlist item", if an item manually chosen from the playlist
 let progressBarSeeking = false;
+let preventIdleTimeout = undefined; // to prevent an idle timeout if media is paused
 
 //############################################################################### functions
 function createElement({
@@ -698,6 +699,8 @@ cjs.on('playing', () => {
     playerCheckNextAvailable();
 
     playlistCurrentPauseBtn();
+
+    clearInterval(preventIdleTimeout);
 });
 
 // Media is paused
@@ -718,6 +721,12 @@ cjs.on('pause', () => {
     playerCheckNextAvailable();
 
     playlistResetPauseBtns();
+
+    // to prevent an idle timeout if media is paused
+    preventIdleTimeout = setInterval(() => {
+        cjs.seek(cjs.time + 1);
+        cjs.seek(cjs.time - 1);
+    }, 300000);
 });
 
 // Media ended
